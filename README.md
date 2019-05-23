@@ -1,4 +1,6 @@
-Grbl is a no-compromise, high performance, low cost alternative to parallel-port-based motion control for CNC milling. This version of Grbl runs on an Arduino Mega2560 only.
+* STATUS: Coding has not begun! Just forked recently.
+
+Arbl is a no-compromise, high performance, grbl based motion control for 8 axis Robot Arm Control. This version of Arbl runs on an Arduino Mega2560 only.
 
 The controller is written in highly optimized C utilizing every clever feature of the AVR-chips to achieve precise timing and asynchronous operation. It is able to maintain up to 30kHz of stable, jitter free control pulses.
 
