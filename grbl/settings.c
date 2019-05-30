@@ -1,22 +1,22 @@
 /*
   settings.c - eeprom configuration handling
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h"
@@ -91,7 +91,7 @@ void settings_write_coord_data(uint8_t coord_select, float *coord_data)
 }
 
 
-// Method to store Grbl global settings struct and version number into EEPROM
+// Method to store Arbl global settings struct and version number into EEPROM
 // NOTE: This function can only be called in IDLE state.
 void write_global_settings()
 {
@@ -100,7 +100,7 @@ void write_global_settings()
 }
 
 
-// Method to restore EEPROM-saved Grbl global settings back to defaults.
+// Method to restore EEPROM-saved Arbl global settings back to defaults.
 void settings_restore(uint8_t restore_flag) {
   if (restore_flag & SETTINGS_RESTORE_DEFAULTS) {
     settings = defaults;
@@ -173,7 +173,7 @@ uint8_t settings_read_coord_data(uint8_t coord_select, float *coord_data)
 }
 
 
-// Reads Grbl global settings struct from EEPROM.
+// Reads Arbl global settings struct from EEPROM.
 uint8_t read_global_settings() {
   // Check version-byte of eeprom
   uint8_t version = eeprom_get_char(0);
@@ -225,7 +225,7 @@ uint8_t settings_store_global_setting(uint8_t parameter, float value) {
       }
     }
   } else {
-    // Store non-axis Grbl settings
+    // Store non-axis Arbl settings
     uint8_t int_value = trunc(value);
     switch(parameter) {
       case 0:
@@ -309,7 +309,7 @@ void settings_init() {
 }
 
 
-// Returns step pin mask according to Grbl internal axis indexing.
+// Returns step pin mask according to Arbl internal axis indexing.
 uint8_t get_step_pin_mask(uint8_t axis_idx)
 {
   #ifdef DEFAULTS_RAMPS_BOARD
@@ -324,7 +324,7 @@ uint8_t get_step_pin_mask(uint8_t axis_idx)
 }
 
 
-// Returns direction pin mask according to Grbl internal axis indexing.
+// Returns direction pin mask according to Arbl internal axis indexing.
 uint8_t get_direction_pin_mask(uint8_t axis_idx)
 {
   #ifdef DEFAULTS_RAMPS_BOARD
@@ -339,7 +339,7 @@ uint8_t get_direction_pin_mask(uint8_t axis_idx)
 }
 
 
-// Returns limit pin mask according to Grbl internal axis indexing.
+// Returns limit pin mask according to Arbl internal axis indexing.
 
 #ifdef DEFAULTS_RAMPS_BOARD
   uint8_t get_min_limit_pin_mask(uint8_t axis_idx)

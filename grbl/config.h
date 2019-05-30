@@ -1,25 +1,25 @@
 /*
   config.h - compile time configuration
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2012-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// This file contains compile-time configurations for Grbl's internal system. For the most part,
+// This file contains compile-time configurations for Arbl's internal system. For the most part,
 // users will not need to directly modify these, but they are here for specific needs, i.e.
 // performance tuning or adjusting to non-typical machines.
 
@@ -86,9 +86,9 @@
 #define CMD_COOLANT_FLOOD_OVR_TOGGLE 0xA0
 #define CMD_COOLANT_MIST_OVR_TOGGLE 0xA1
 
-// If homing is enabled, homing init lock sets Grbl into an alarm state upon power up. This forces
+// If homing is enabled, homing init lock sets Arbl into an alarm state upon power up. This forces
 // the user to perform the homing cycle (or override the locks) before doing anything else. This is
-// mainly a safety feature to remind the user to home, since position is unknown to Grbl.
+// mainly a safety feature to remind the user to home, since position is unknown to Arbl.
 #define HOMING_INIT_LOCK // Comment to disable
 
 // Define the homing cycle patterns with bitmasks. The homing cycle first performs a search mode
@@ -133,18 +133,18 @@
 // If you have a two-axis machine, DON'T USE THIS. Instead, just alter the homing cycle for two-axes.
 // #define HOMING_SINGLE_AXIS_COMMANDS // Default disabled. Uncomment to enable.
 
-// After homing, Grbl will set by default the entire machine space into negative space, as is typical
+// After homing, Arbl will set by default the entire machine space into negative space, as is typical
 // for professional CNC machines, regardless of where the limit switches are located. Uncomment this
-// define to force Grbl to always set the machine origin at the homed location despite switch orientation.
+// define to force Arbl to always set the machine origin at the homed location despite switch orientation.
 // #define HOMING_FORCE_SET_ORIGIN // Uncomment to enable.
 
-// Number of blocks Grbl executes upon startup. These blocks are stored in EEPROM, where the size
+// Number of blocks Arbl executes upon startup. These blocks are stored in EEPROM, where the size
 // and addresses are defined in settings.h. With the current settings, up to 2 startup blocks may
 // be stored and executed in order. These startup blocks would typically be used to set the g-code
 // parser state depending on user preferences.
 #define N_STARTUP_LINE 2 // Integer (1-2)
 
-// Number of floating decimal points printed by Grbl for certain value types. These settings are
+// Number of floating decimal points printed by Arbl for certain value types. These settings are
 // determined by realistic and commonly observed values in CNC machines. For example, position
 // values cannot be less than 0.001mm or 0.0001in, because machines can not be physically more
 // precise this. So, there is likely no need to change these, but you can if you need to here.
@@ -157,8 +157,8 @@
 #define N_DECIMAL_RPMVALUE        0 // RPM value in rotations per min.
 
 // If your machine has two limits switches wired in parallel to one axis, you will need to enable
-// this feature. Since the two switches are sharing a single pin, there is no way for Grbl to tell
-// which one is enabled. This option only effects homing, where if a limit is engaged, Grbl will
+// this feature. Since the two switches are sharing a single pin, there is no way for Arbl to tell
+// which one is enabled. This option only effects homing, where if a limit is engaged, Arbl will
 // alarm out and force the user to manually disengage the limit switch. Otherwise, if you have one
 // limit switch for each axis, don't enable this option. By keeping it disabled, you can perform a
 // homing cycle while on the limit switch and not have to move the machine off of it.
@@ -166,12 +166,12 @@
 
 // Upon a successful probe cycle, this option provides immediately feedback of the probe coordinates
 // through an automatically generated message. If disabled, users can still access the last probe
-// coordinates through Grbl '$#' print parameters.
+// coordinates through Arbl '$#' print parameters.
 #define MESSAGE_PROBE_COORDINATES // Enabled by default. Comment to disable.
 
 // This option causes the feed hold input to act as a safety door switch. A safety door, when triggered,
 // immediately forces a feed hold and then safely de-energizes the machine. Resuming is blocked until
-// the safety door is re-engaged. When it is, Grbl will re-energize the machine and then resume on the
+// the safety door is re-engaged. When it is, Arbl will re-energize the machine and then resume on the
 // previous tool path, as if nothing happened.
 // #define ENABLE_SAFETY_DOOR_INPUT_PIN // Default disabled. Uncomment to enable.
 
@@ -185,7 +185,7 @@
 // #define HOMING_CYCLE_0 (1<<X_AXIS) and #define HOMING_CYCLE_1 (1<<Y_AXIS)
 // NOTE: This configuration option alters the motion of the X and Y axes to principle of operation
 // defined at (http://corexy.com/theory.html). Motors are assumed to positioned and wired exactly as
-// described, if not, motions may move in strange directions. Grbl requires the CoreXY A and B motors
+// described, if not, motions may move in strange directions. Arbl requires the CoreXY A and B motors
 // have the same steps per mm internally.
 // #define COREXY // Default disabled. Uncomment to enable.
 
@@ -219,15 +219,15 @@
 // #define INVERT_COOLANT_FLOOD_PIN // Default disabled. Uncomment to enable.
 // #define INVERT_COOLANT_MIST_PIN // Default disabled. Note: Enable M7 mist coolant in config.h
 
-// When Grbl powers-cycles or is hard reset with the Arduino reset button, Grbl boots up with no ALARM
-// by default. This is to make it as simple as possible for new users to start using Grbl. When homing
-// is enabled and a user has installed limit switches, Grbl will boot up in an ALARM state to indicate
-// Grbl doesn't know its position and to force the user to home before proceeding. This option forces
-// Grbl to always initialize into an ALARM state regardless of homing or not. This option is more for
+// When Arbl powers-cycles or is hard reset with the Arduino reset button, Arbl boots up with no ALARM
+// by default. This is to make it as simple as possible for new users to start using Arbl. When homing
+// is enabled and a user has installed limit switches, Arbl will boot up in an ALARM state to indicate
+// Arbl doesn't know its position and to force the user to home before proceeding. This option forces
+// Arbl to always initialize into an ALARM state regardless of homing or not. This option is more for
 // OEMs and LinuxCNC users that would like this power-cycle behavior.
 // #define FORCE_INITIALIZATION_ALARM // Default disabled. Uncomment to enable.
 
-// At power-up or a reset, Grbl will check the limit switch states to ensure they are not active
+// At power-up or a reset, Arbl will check the limit switch states to ensure they are not active
 // before initialization. If it detects a problem and the hard limits setting is enabled, Grbl will
 // simply message the user to check the limits and enter an alarm state, rather than idle. Grbl will
 // not throw an alarm message.

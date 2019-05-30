@@ -1,23 +1,23 @@
 /*
   planner.c - buffers movement commands and manages the acceleration profile plan
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
   Copyright (c) 2011 Jens Geisler
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h"
@@ -410,12 +410,12 @@ uint8_t plan_buffer_line(float *target, plan_line_data_t *pl_data)
     // colinear with the circle center. The circular segment joining the two paths represents the
     // path of centripetal acceleration. Solve for max velocity based on max acceleration about the
     // radius of the circle, defined indirectly by junction deviation. This may be also viewed as
-    // path width or max_jerk in the previous Grbl version. This approach does not actually deviate
+    // path width or max_jerk in the previous Arbl version. This approach does not actually deviate
     // from path, but used as a robust way to compute cornering speeds, as it takes into account the
     // nonlinearities of both the junction angle and junction velocity.
     //
-    // NOTE: If the junction deviation value is finite, Grbl executes the motions in an exact path
-    // mode (G61). If the junction deviation value is zero, Grbl will execute the motion in an exact
+    // NOTE: If the junction deviation value is finite, Arbl executes the motions in an exact path
+    // mode (G61). If the junction deviation value is zero, Arbl will execute the motion in an exact
     // stop mode (G61.1) manner. In the future, if continuous mode (G64) is desired, the math here
     // is exactly the same. Instead of motioning all the way to junction point, the machine will
     // just follow the arc circle defined here. The Arduino doesn't have the CPU cycles to perform

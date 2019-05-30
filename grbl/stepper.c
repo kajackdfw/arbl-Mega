@@ -1,22 +1,22 @@
 /*
   stepper.c - stepper motor driver: executes motion plans using stepper motors
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h"
@@ -305,7 +305,7 @@ void st_go_idle()
 }
 
 
-/* "The Stepper Driver Interrupt" - This timer interrupt is the workhorse of Grbl. Grbl employs
+/* "The Stepper Driver Interrupt" - This timer interrupt is the workhorse of Arbl. Arbl employs
    the venerable Bresenham line algorithm to manage and exactly synchronize multi-axis moves.
    Unlike the popular DDA algorithm, the Bresenham algorithm is not susceptible to numerical
    round-off errors and only requires fast integer counters, meaning low computational overhead
@@ -314,7 +314,7 @@ void st_go_idle()
    pulse trains, or aliasing, which can lead to strange audible noises or shaking. This is
    particularly noticeable or may cause motion issues at low step frequencies (0-5kHz), but
    is usually not a physical problem at higher frequencies, although audible.
-     To improve Bresenham multi-axis performance, Grbl uses what we call an Adaptive Multi-Axis
+     To improve Bresenham multi-axis performance, Arbl uses what we call an Adaptive Multi-Axis
    Step Smoothing (AMASS) algorithm, which does what the name implies. At lower step frequencies,
    AMASS artificially increases the Bresenham resolution without effecting the algorithm's
    innate exactness. AMASS adapts its resolution levels automatically depending on the step
@@ -328,7 +328,7 @@ void st_go_idle()
    Level 2, we simply bit-shift again, so the non-dominant Bresenham axes can step within any
    of the four ISR ticks, the dominant axis steps every four ISR ticks, and quadruple the
    stepper ISR frequency. And so on. This, in effect, virtually eliminates multi-axis aliasing
-   issues with the Bresenham algorithm and does not significantly alter Grbl's performance, but
+   issues with the Bresenham algorithm and does not significantly alter Arbl's performance, but
    in fact, more efficiently utilizes unused CPU cycles overall throughout all configurations.
      AMASS retains the Bresenham algorithm exactness by requiring that it always executes a full
    Bresenham step, regardless of AMASS Level. Meaning that for an AMASS Level 2, all four
@@ -346,7 +346,7 @@ void st_go_idle()
    simultaneously with these two interrupts.
 
    NOTE: This interrupt must be as efficient as possible and complete before the next ISR tick,
-   which for Grbl must be less than 33.3usec (@30kHz ISR rate). Oscilloscope measured time in
+   which for Arbl must be less than 33.3usec (@30kHz ISR rate). Oscilloscope measured time in
    ISR is 5usec typical and 25usec maximum, well below requirement.
    NOTE: This ISR expects at least one step to be executed per segment.
 */
@@ -553,7 +553,7 @@ ISR(TIMER1_COMPA_vect)
    NOTE: Interrupt collisions between the serial and stepper interrupts can cause delays by
    a few microseconds, if they execute right before one another. Not a big deal, but can
    cause issues at high step rates if another high frequency asynchronous interrupt is
-   added to Grbl.
+   added to Arbl.
 */
 // This interrupt is enabled by ISR_TIMER1_COMPAREA when it sets the motor port bits to execute
 // a step. This ISR resets the motor port after a short period (settings.pulse_microseconds)
@@ -1077,7 +1077,7 @@ void st_prep_buffer()
        However, since floats have only 7.2 significant digits, long moves with extremely
        high step counts can exceed the precision of floats, which can lead to lost steps.
        Fortunately, this scenario is highly unlikely and unrealistic in CNC machines
-       supported by Grbl (i.e. exceeding 10 meters axis travel at 200 step/mm).
+       supported by Arbl (i.e. exceeding 10 meters axis travel at 200 step/mm).
     */
     float step_dist_remaining = prep.step_per_mm*mm_remaining; // Convert mm_remaining to steps
     float n_steps_remaining = ceil(step_dist_remaining); // Round-up current steps remaining
@@ -1103,7 +1103,7 @@ void st_prep_buffer()
     // compensate, we track the time to execute the previous segment's partial step and simply
     // apply it with the partial step distance to the current segment, so that it minutely
     // adjusts the whole segment rate to keep step output exact. These rate adjustments are
-    // typically very small and do not adversely effect performance, but ensures that Grbl
+    // typically very small and do not adversely effect performance, but ensures that Arbl
     // outputs the exact acceleration and velocity profiles as computed by the planner.
     dt += prep.dt_remainder; // Apply previous segment partial step execute time
     float inv_rate = dt/(last_n_steps_remaining - step_dist_remaining); // Compute adjusted step rate inverse

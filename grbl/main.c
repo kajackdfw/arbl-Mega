@@ -1,6 +1,6 @@
 /*
   main.c - An embedded CNC Controller with rs274/ngc (g-code) support
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud

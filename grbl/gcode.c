@@ -1,22 +1,22 @@
 /*
   gcode.c - rs274/ngc parser.
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h"
@@ -350,7 +350,7 @@ uint8_t gc_execute_line(char *line)
      To do this, this would simply need to retain all of the data in STEP 1, such as the new block
      data struct, the modal group and value bitflag tracking variables, and axis array indices
      compatible variables. This data contains all of the information necessary to error-check the
-     new g-code block when the EOL character is received. However, this would break Grbl's startup
+     new g-code block when the EOL character is received. However, this would break Arbl's startup
      lines in how it currently works and would require some refactoring to make it compatible.
   */
 
@@ -427,7 +427,7 @@ uint8_t gc_execute_line(char *line)
   // [6. Change tool ]: N/A
   // [7. Spindle control ]: N/A
   // [8. Coolant control ]: N/A
-  // [9. Override control ]: Not supported except for a Grbl-only parking motion override control.
+  // [9. Override control ]: Not supported except for a Arbl-only parking motion override control.
   #ifdef ENABLE_PARKING_OVERRIDE_CONTROL
     if (bit_istrue(command_words,bit(MODAL_GROUP_M9))) { // Already set as enabled in parser.
       if (bit_istrue(value_words,bit(WORD_P))) {
@@ -474,7 +474,7 @@ uint8_t gc_execute_line(char *line)
 
   // [13. Cutter radius compensation ]: G41/42 NOT SUPPORTED. Error, if enabled while G53 is active.
   // [G40 Errors]: G2/3 arc is programmed after a G40. The linear move after disabling is less than tool diameter.
-  //   NOTE: Since cutter radius compensation is never enabled, these G40 errors don't apply. Grbl supports G40
+  //   NOTE: Since cutter radius compensation is never enabled, these G40 errors don't apply. Arbl supports G40
   //   only for the purpose to not error when G40 is sent with a g-code program header to setup the default modes.
 
   // [14. Cutter length compensation ]: G43 NOT SUPPORTED, but G43.1 and G49 are.
@@ -943,7 +943,7 @@ uint8_t gc_execute_line(char *line)
   }
   pl_data->condition |= gc_state.modal.coolant; // Set condition flag for planner use.
 
-  // [9. Override control ]: NOT SUPPORTED. Always enabled. Except for a Grbl-only parking control.
+  // [9. Override control ]: NOT SUPPORTED. Always enabled. Except for a Arbl-only parking control.
   #ifdef ENABLE_PARKING_OVERRIDE_CONTROL
     if (gc_state.modal.override != gc_block.modal.override) {
       gc_state.modal.override = gc_block.modal.override;

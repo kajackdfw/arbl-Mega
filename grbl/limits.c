@@ -1,22 +1,22 @@
 /*
   limits.c - code pertaining to limit-switches and performing the homing cycle
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2012-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
   
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
   
 #include "grbl.h"
@@ -181,7 +181,7 @@ uint8_t limits_get_state()
     ISR(LIMIT_INT_vect) // DEFAULT: Limit pin change interrupt process. 
     {
       // Ignore limit switches if already in an alarm state or in-process of executing an alarm.
-      // When in the alarm state, Grbl should have been reset or will force a reset, so any pending 
+      // When in the alarm state, Arbl should have been reset or will force a reset, so any pending
       // moves in the planner and serial buffers are all cleared and newly sent blocks will be 
       // locked out until a homing cycle or a kill lock command. Allows the user to disable the hard
       // limit setting if their limits are constantly triggering after a reset and move their axes.
@@ -501,7 +501,7 @@ void limits_go_home(uint8_t cycle_mask)
   #endif // DEFAULTS_RAMPS_BOARD
 
   // The active cycle axes should now be homed and machine limits have been located. By
-  // default, Grbl defines machine space as all negative, as do most CNCs. Since limit switches
+  // default, Arbl defines machine space as all negative, as do most CNCs. Since limit switches
   // can be on either side of an axes, check and set axes machine zero appropriately. Also,
   // set up pull-off maneuver from axes limit switches that have been homed. This provides
   // some initial clearance off the switches and should also help prevent them from falsely
