@@ -149,7 +149,7 @@
 #define WORD_X  10
 #define WORD_Y  11
 #define WORD_Z  12
-#define WORD_H  13
+#define WORD_H  13 // Wrist
 #define WORD_A  14
 #define WORD_B  15
 #define WORD_C  16
@@ -212,6 +212,7 @@ typedef struct {
   float s;         // Spindle speed
   uint8_t t;       // Tool selection
   float xyz[3];    // X,Y,Z Translational axes
+  float abc[3];    // A,B,C Translational axes
 } gc_values_t;
 
 
