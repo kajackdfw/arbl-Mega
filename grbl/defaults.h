@@ -1,21 +1,21 @@
 /*
   defaults.h - defaults settings configuration file
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2012-2016 Sungeun K. Jeon for Gnea Research LLC
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* The defaults.h file serves as a central default settings selector for different machine
@@ -28,7 +28,7 @@
 #ifndef defaults_h
 
 #ifdef DEFAULTS_GENERIC
-  // Grbl generic default settings. Should work across different machines.
+  // Arbl generic default settings. Should work across different machines.
   #define DEFAULT_X_STEPS_PER_MM 250.0
   #define DEFAULT_Y_STEPS_PER_MM 250.0
   #define DEFAULT_Z_STEPS_PER_MM 250.0
@@ -375,7 +375,7 @@
 #endif
 
 #ifdef DEFAULTS_OXCNC
-  // Grbl settings for OpenBuilds OX CNC Machine
+  // Arbl settings for OpenBuilds OX CNC Machine
   // http://www.openbuilds.com/builds/openbuilds-ox-cnc-machine.341/
   #define DEFAULT_X_STEPS_PER_MM 26.670
   #define DEFAULT_Y_STEPS_PER_MM 26.670
@@ -414,8 +414,8 @@
 #endif
 
 #ifdef DEFAULTS_SIMULATOR
-  // Settings only for Grbl Simulator (www.github.com/grbl/grbl-sim)
-  // Grbl generic default settings. Should work across different machines.
+  // Settings only for Arbl Simulator (www.github.com/grbl/grbl-sim)
+  // Arbl generic default settings. Should work across different machines.
   #define DEFAULT_X_STEPS_PER_MM 1000.0
   #define DEFAULT_Y_STEPS_PER_MM 1000.0
   #define DEFAULT_Z_STEPS_PER_MM 1000.0
@@ -454,10 +454,10 @@
 
 #ifdef DEFAULTS_RAMPS_BOARD
   // Generic conservative settings for a RAMP CNC machine. You must update these yourself. 
-  // Keep in mind that Grbl is highly efficient and settings can be significantly different.
+  // Keep in mind that Arbl is highly efficient and settings can be significantly different.
   // Especially when optimizing for a different CNC task like going from 3d printing to 
   // CNC milling or laser cutting. Unlike Marlin, these defaults are only applied when the 
-  // EEPROM is explicitly wiped, either by a `$RST=*` command or Grbl detecting a settings
+  // EEPROM is explicitly wiped, either by a `$RST=*` command or Arbl detecting a settings
   // version type change (not frequent).
   #define DEFAULT_X_STEPS_PER_MM 80.0
   #define DEFAULT_Y_STEPS_PER_MM 80.0

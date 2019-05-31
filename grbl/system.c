@@ -1,21 +1,21 @@
 /*
   system.c - Handles system level commands and real-time processes
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2014-2016 Sungeun K. Jeon for Gnea Research LLC
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h"
@@ -101,9 +101,9 @@ void system_execute_startup(char *line)
 
 
 // Directs and executes one line of formatted input from protocol_process. While mostly
-// incoming streaming g-code blocks, this also executes Grbl internal commands, such as
+// incoming streaming g-code blocks, this also executes Arbl internal commands, such as
 // settings, initiating the homing cycle, and toggling switch states. This differs from
-// the realtime command module by being susceptible to when Grbl is ready to execute the
+// the realtime command module by being susceptible to when Arbl is ready to execute the
 // next line during a cycle, so for switches like block delete, the switch only effects
 // the lines that are processed afterward, not necessarily real-time during a cycle,
 // since there are motions already stored in the buffer. However, this 'lag' should not
@@ -124,7 +124,7 @@ uint8_t system_execute_line(char *line)
     case '$': case 'G': case 'C': case 'X':
       if ( line[2] != 0 ) { return(STATUS_INVALID_STATEMENT); }
       switch( line[1] ) {
-        case '$' : // Prints Grbl settings
+        case '$' : // Prints Arbl settings
           if ( sys.state & (STATE_CYCLE | STATE_HOLD) ) { return(STATUS_IDLE_ERROR); } // Block during cycle. Takes too long to print.
           else { report_grbl_settings(); }
           break;
@@ -133,7 +133,7 @@ uint8_t system_execute_line(char *line)
           report_gcode_modes();
           break;
         case 'C' : // Set check g-code mode [IDLE/CHECK]
-          // Perform reset when toggling off. Check g-code mode should only work if Grbl
+          // Perform reset when toggling off. Check g-code mode should only work if Arbl
           // is idle and ready, regardless of alarm locks. This is mainly to keep things
           // simple and consistent.
           if ( sys.state == STATE_CHECK_MODE ) {
@@ -160,7 +160,7 @@ uint8_t system_execute_line(char *line)
       // Block any system command that requires the state as IDLE/ALARM. (i.e. EEPROM, homing)
       if ( !(sys.state == STATE_IDLE || sys.state == STATE_ALARM) ) { return(STATUS_IDLE_ERROR); }
       switch( line[1] ) {
-        case '#' : // Print Grbl NGC parameters
+        case '#' : // Print Arbl NGC parameters
           if ( line[2] != 0 ) { return(STATUS_INVALID_STATEMENT); }
           else { report_ngc_parameters(); }
           break;
@@ -186,7 +186,7 @@ uint8_t system_execute_line(char *line)
             if (line[2] == 0) { system_execute_startup(line); }
           }
           break;
-        case 'S' : // Puts Grbl to sleep [IDLE/ALARM]
+        case 'S' : // Puts Arbl to sleep [IDLE/ALARM]
           if ((line[2] != 'L') || (line[3] != 'P') || (line[4] != 0)) { return(STATUS_INVALID_STATEMENT); }
           system_set_exec_state_flag(EXEC_SLEEP); // Set to execute sleep mode immediately
           break;
@@ -341,7 +341,7 @@ uint8_t system_check_travel_limits(float *target)
 }
 
 
-// Special handlers for setting and clearing Grbl's real-time execution flags.
+// Special handlers for setting and clearing Arbl's real-time execution flags.
 void system_set_exec_state_flag(uint8_t mask) {
   uint8_t sreg = SREG;
   cli();

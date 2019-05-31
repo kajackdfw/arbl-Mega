@@ -1,21 +1,21 @@
 /*
   system.h - Header for system level commands and real-time processes
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2014-2016 Sungeun K. Jeon for Gnea Research LLC
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef system_h
@@ -70,7 +70,7 @@
 #define EXEC_COOLANT_MIST_OVR_TOGGLE   bit(7)
 
 // Define system state bit map. The state variable primarily tracks the individual functions
-// of Grbl to manage each without overlapping. It is also used as a messaging flag for
+// of Arbl to manage each without overlapping. It is also used as a messaging flag for
 // critical events.
 #define STATE_IDLE          0      // Must be zero. No flags.
 #define STATE_ALARM         bit(0) // In alarm state. Locks out all g-code processes. Allows settings access.
@@ -100,7 +100,7 @@
 #define STEP_CONTROL_EXECUTE_SYS_MOTION   bit(2)
 #define STEP_CONTROL_UPDATE_SPINDLE_PWM   bit(3)
 
-// Define control pin index for Grbl internal use. Pin maps may change, but these values don't.
+// Define control pin index for Arbl internal use. Pin maps may change, but these values don't.
 #define N_CONTROL_PIN 4
 #define CONTROL_PIN_INDEX_SAFETY_DOOR   bit(0)
 #define CONTROL_PIN_INDEX_RESET         bit(1)
@@ -117,7 +117,7 @@
 
 // Define global system variables
 typedef struct {
-  uint8_t state;               // Tracks the current system state of Grbl.
+  uint8_t state;               // Tracks the current system state of Arbl.
   uint8_t abort;               // System abort flag. Forces exit back to main loop for reset.             
   uint8_t suspend;             // System suspend bitflag variable that manages holds, cancels, and safety door.
   uint8_t soft_limit;          // Tracks soft limit errors for the state machine. (boolean)
@@ -189,7 +189,7 @@ void system_convert_array_steps_to_mpos(float *position, int32_t *steps);
 // Checks and reports if target array exceeds machine travel limits.
 uint8_t system_check_travel_limits(float *target);
 
-// Special handlers for setting and clearing Grbl's real-time execution flags.
+// Special handlers for setting and clearing Arbl's real-time execution flags.
 void system_set_exec_state_flag(uint8_t mask);
 void system_clear_exec_state_flag(uint8_t mask);
 void system_set_exec_alarm(uint8_t code);

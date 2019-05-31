@@ -1,21 +1,21 @@
 /*
   sleep.c - determines and executes sleep procedures
-  Part of Grbl
+  Part of Arbl
   
   Copyright (c) 2016 Sungeun K. Jeon  
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h" 
@@ -78,7 +78,7 @@ static void sleep_execute()
   } while(sleep_counter <= SLEEP_COUNT_MAX);
   
   // If reached, sleep counter has expired. Execute sleep procedures.
-  // Notify user that Grbl has timed out and will be parking. 
+  // Notify user that Arbl has timed out and will be parking.
   // To exit sleep, resume or reset. Either way, the job will not be recoverable. 
   report_feedback_message(MESSAGE_SLEEP_MODE);
   system_set_exec_state_flag(EXEC_SLEEP);
@@ -87,7 +87,7 @@ static void sleep_execute()
 
 // Checks running conditions for sleep. If satisfied, enables sleep countdown and executes
 // sleep mode upon elapse.
-// NOTE: Sleep procedures can be blocking, since Grbl isn't receiving any commands, nor moving.
+// NOTE: Sleep procedures can be blocking, since Arbl isn't receiving any commands, nor moving.
 // Hence, make sure any valid running state that executes the sleep timer is not one that is moving.
 void sleep_check()
 {

@@ -1,25 +1,25 @@
 /*
   report.c - reporting and messaging methods
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2012-2016 Sungeun K. Jeon for Gnea Research LLC
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*
-  This file functions as the primary feedback interface for Grbl. Any outgoing data, such
+  This file functions as the primary feedback interface for Arbl. Any outgoing data, such
   as the protocol status messages, feedback messages, and status reports, are stored here.
   For the most part, these functions primarily are called from protocol.c methods. If a
   different style feedback is desired (i.e. JSON), then a user can change these following
@@ -169,19 +169,19 @@ void report_feedback_message(uint8_t message_code)
 // Welcome message
 void report_init_message()
 {
-  printPgmString(PSTR("\r\nGrbl " GRBL_VERSION " ['$' for help]\r\n"));
+  printPgmString(PSTR("\r\nArbl " GRBL_VERSION " ['$' for help]\r\n"));
 }
 
-// Grbl help message
+// Arbl help message
 void report_grbl_help() {
   printPgmString(PSTR("[HLP:$$ $# $G $I $N $x=val $Nx=line $J=line $SLP $C $X $H ~ ! ? ctrl-x]\r\n"));    
 }
 
 
-// Grbl global settings print out.
+// Arbl global settings print out.
 // NOTE: The numbering scheme here must correlate to storing in settings.c
 void report_grbl_settings() {
-  // Print Grbl settings.
+  // Print Arbl settings.
   report_util_uint8_setting(0,settings.pulse_microseconds);
   report_util_uint8_setting(1,settings.stepper_idle_lock_time);
   report_util_uint8_setting(2,settings.step_invert_mask);
@@ -223,7 +223,7 @@ void report_grbl_settings() {
 
 // Prints current probe parameters. Upon a probe command, these parameters are updated upon a
 // successful probe or upon a failed probe with the G38.3 without errors command (if supported).
-// These values are retained until Grbl is power-cycled, whereby they will be re-zeroed.
+// These values are retained until Arbl is power-cycled, whereby they will be re-zeroed.
 void report_probe_parameters()
 {
   // Report in terms of machine position.
@@ -237,7 +237,7 @@ void report_probe_parameters()
 }
 
 
-// Prints Grbl NGC parameters (coordinate offsets, probing)
+// Prints Arbl NGC parameters (coordinate offsets, probing)
 void report_ngc_parameters()
 {
   float coord_data[N_AXIS];
@@ -427,8 +427,8 @@ void report_build_info(char *line)
 }
 
 
-// Prints the character string line Grbl has received from the user, which has been pre-parsed,
-// and has been sent into protocol_execute_line() routine to be executed by Grbl.
+// Prints the character string line Arbl has received from the user, which has been pre-parsed,
+// and has been sent into protocol_execute_line() routine to be executed by Arbl.
 void report_echo_line_received(char *line)
 {
   printPgmString(PSTR("[echo: ")); printString(line);

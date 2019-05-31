@@ -288,12 +288,12 @@ uint8_t gc_execute_line(char *line)
            legal g-code words and stores their value. Error-checking is performed later since some
            words (I,J,K,L,P,R) have multiple connotations and/or depend on the issued commands. */
         switch(letter){
-          // case 'A': // Not supported
-          // case 'B': // Not supported
-          // case 'C': // Not supported
-          // case 'D': // Not supported
+          case 'A': word_bit = WORD_A; gc_block.values.xyz[A_AXIS] = value; axis_words |= (1<<A_AXIS); break; // .xyz FIXME
+          case 'B': word_bit = WORD_B; gc_block.values.xyz[B_AXIS] = value; axis_words |= (1<<B_AXIS); break; // .xyz FIXME
+          case 'C': word_bit = WORD_C; gc_block.values.xyz[C_AXIS] = value; axis_words |= (1<<C_AXIS); break; // .xyz FIXME
+          case 'D': word_bit = WORD_D; gc_block.values.xyz[D_AXIS] = value; axis_words |= (1<<D_AXIS); break; // .xyz FIXME
           case 'F': word_bit = WORD_F; gc_block.values.f = value; break;
-          // case 'H': // Not supported
+          case 'H': word_bit = WORD_H; gc_block.values.xyz[H_AXIS] = value; axis_words |= (1<<H_AXIS); break; // .xyz FIXME
           case 'I': word_bit = WORD_I; gc_block.values.ijk[X_AXIS] = value; ijk_words |= (1<<X_AXIS); break;
           case 'J': word_bit = WORD_J; gc_block.values.ijk[Y_AXIS] = value; ijk_words |= (1<<Y_AXIS); break;
           case 'K': word_bit = WORD_K; gc_block.values.ijk[Z_AXIS] = value; ijk_words |= (1<<Z_AXIS); break;

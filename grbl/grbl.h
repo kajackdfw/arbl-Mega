@@ -1,31 +1,31 @@
 /*
-  grbl.h - main Grbl include file
-  Part of Grbl
+  grbl.h - main Arbl include file
+  Part of Arbl
 
   Copyright (c) 2015-2016 Sungeun K. Jeon for Gnea Research LLC
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef grbl_h
 #define grbl_h
 
-// Grbl versioning system
+// Arbl versioning system
 #define GRBL_VERSION "1.1g"
 #define GRBL_VERSION_BUILD "20180813.Mega"
 
-// Define standard libraries used by Grbl.
+// Define standard libraries used by Arbl.
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
@@ -38,7 +38,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// Define the Grbl system include files. NOTE: Do not alter organization.
+// Define the Arbl system include files. NOTE: Do not alter organization.
 #include "config.h"
 #include "nuts_bolts.h"
 #include "settings.h"

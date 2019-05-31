@@ -228,8 +228,8 @@
 // #define FORCE_INITIALIZATION_ALARM // Default disabled. Uncomment to enable.
 
 // At power-up or a reset, Arbl will check the limit switch states to ensure they are not active
-// before initialization. If it detects a problem and the hard limits setting is enabled, Grbl will
-// simply message the user to check the limits and enter an alarm state, rather than idle. Grbl will
+// before initialization. If it detects a problem and the hard limits setting is enabled, Arbl will
+// simply message the user to check the limits and enter an alarm state, rather than idle. Arbl will
 // not throw an alarm message.
 #define CHECK_LIMITS_AT_INIT
 
@@ -264,7 +264,7 @@
 // to their default values at program end.
 #define RESTORE_OVERRIDES_AFTER_PROGRAM_END // Default enabled. Comment to disable.
 
-// The status report change for Grbl v1.1 and after also removed the ability to disable/enable most data
+// The status report change for Arbl v1.1 and after also removed the ability to disable/enable most data
 // fields from the report. This caused issues for GUI developers, who've had to manage several scenarios
 // and configurations. The increased efficiency of the new reporting style allows for all data fields to 
 // be sent without potential performance issues.
@@ -280,9 +280,9 @@
 // Some status report data isn't necessary for realtime, only intermittently, because the values don't
 // change often. The following macros configures how many times a status report needs to be called before
 // the associated data is refreshed and included in the status report. However, if one of these value
-// changes, Grbl will automatically include this data in the next status report, regardless of what the
+// changes, Arbl will automatically include this data in the next status report, regardless of what the
 // count is at the time. This helps reduce the communication overhead involved with high frequency reporting
-// and agressive streaming. There is also a busy and an idle refresh count, which sets up Grbl to send
+// and agressive streaming. There is also a busy and an idle refresh count, which sets up Arbl to send
 // refreshes more often when its not doing anything important. With a good GUI, this data doesn't need
 // to be refreshed very often, on the order of a several seconds.
 // NOTE: WCO refresh must be 2 or greater. OVR refresh must be 1 or greater.
@@ -307,23 +307,23 @@
 // step smoothing. See stepper.c for more details on the AMASS system works.
 #define ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING  // Default enabled. Comment to disable.
 
-// Sets the maximum step rate allowed to be written as a Grbl setting. This option enables an error
+// Sets the maximum step rate allowed to be written as a Arbl setting. This option enables an error
 // check in the settings module to prevent settings values that will exceed this limitation. The maximum
 // step rate is strictly limited by the CPU speed and will change if something other than an AVR running
 // at 16MHz is used.
 // NOTE: For now disabled, will enable if flash space permits.
 // #define MAX_STEP_RATE_HZ 30000 // Hz
 
-// By default, Grbl sets all input pins to normal-high operation with their internal pull-up resistors
+// By default, Arbl sets all input pins to normal-high operation with their internal pull-up resistors
 // enabled. This simplifies the wiring for users by requiring only a switch connected to ground,
 // although its recommended that users take the extra step of wiring in low-pass filter to reduce
-// electrical noise detected by the pin. If the user inverts the pin in Grbl settings, this just flips
+// electrical noise detected by the pin. If the user inverts the pin in Arbl settings, this just flips
 // which high or low reading indicates an active signal. In normal operation, this means the user
 // needs to connect a normal-open switch, but if inverted, this means the user should connect a
 // normal-closed switch.
 // The following options disable the internal pull-up resistors, sets the pins to a normal-low
 // operation, and switches must be now connect to Vcc instead of ground. This also flips the meaning
-// of the invert pin Grbl setting, where an inverted setting now means the user should connect a
+// of the invert pin Arbl setting, where an inverted setting now means the user should connect a
 // normal-open switch and vice versa.
 // NOTE: All pins associated with the feature are disabled, i.e. XYZ limit pins, not individual axes.
 // WARNING: When the pull-ups are disabled, this requires additional wiring with pull-down resistors!
@@ -347,17 +347,17 @@
 // NOTE: Compute duty cycle at the minimum PWM by this equation: (% duty cycle)=(SPINDLE_PWM_MIN_VALUE/255)*100
 // #define SPINDLE_PWM_MIN_VALUE 5 // Default disabled. Uncomment to enable. Must be greater than zero. Integer (1-255).
 
-// Alters the behavior of the spindle enable pin. By default, Grbl will not disable the enable pin if 
+// Alters the behavior of the spindle enable pin. By default, Arbl will not disable the enable pin if
 // spindle speed is zero and M3/4 is active, but still sets the PWM output to zero. This allows the users 
 // to know if the spindle is active and use it as an additional control input. However, in some use cases,
 // a user may want the enable pin to disable with a zero spindle speed and re-enable when spindle speed is
 // greater than zero. This option does that.
 // #define SPINDLE_ENABLE_OFF_WITH_ZERO_SPEED // Default disabled. Uncomment to enable.
 
-// With this enabled, Grbl sends back an echo of the line it has received, which has been pre-parsed (spaces
-// removed, capitalized letters, no comments) and is to be immediately executed by Grbl. Echoes will not be
-// sent upon a line buffer overflow, but should for all normal lines sent to Grbl. For example, if a user
-// sendss the line 'g1 x1.032 y2.45 (test comment)', Grbl will echo back in the form '[echo: G1X1.032Y2.45]'.
+// With this enabled, Arbl sends back an echo of the line it has received, which has been pre-parsed (spaces
+// removed, capitalized letters, no comments) and is to be immediately executed by Arbl. Echoes will not be
+// sent upon a line buffer overflow, but should for all normal lines sent to Arbl. For example, if a user
+// sendss the line 'g1 x1.032 y2.45 (test comment)', Arbl will echo back in the form '[echo: G1X1.032Y2.45]'.
 // NOTE: Only use this for debugging purposes!! When echoing, this takes up valuable resources and can effect
 // performance. If absolutely needed for normal operation, the serial write buffer should be greatly increased
 // to help minimize transmission waiting within the serial write protocol.
@@ -401,7 +401,7 @@
 #define DWELL_TIME_STEP 50 // Integer (1-255) (milliseconds)
 
 // Creates a delay between the direction pin setting and corresponding step pulse by creating
-// another interrupt (Timer2 compare) to manage it. The main Grbl interrupt (Timer1 compare)
+// another interrupt (Timer2 compare) to manage it. The main Arbl interrupt (Timer1 compare)
 // sets the direction pins, and does not immediately set the stepper pins, as it would in
 // normal operation. The Timer2 compare fires next to set the stepper pins after the step
 // pulse delay time, and Timer2 overflow will complete the step pulse, except now delayed
@@ -412,7 +412,7 @@
 // #define STEP_PULSE_DELAY 10 // Step pulse delay in microseconds. Default disabled.
 
 // The number of linear motions in the planner buffer to be planned at any give time. The vast
-// majority of RAM that Grbl uses is based on this buffer size. Only increase if there is extra 
+// majority of RAM that Arbl uses is based on this buffer size. Only increase if there is extra
 // available RAM, like when re-compiling for a Mega or Sanguino. Or decrease if the Arduino
 // begins to crash due to the lack of available RAM or if the CPU is having trouble keeping
 // up with planning new incoming motions as they are executed. 
@@ -422,7 +422,7 @@
 // and the planner blocks. Each segment is set of steps executed at a constant velocity over a
 // fixed time defined by ACCELERATION_TICKS_PER_SECOND. They are computed such that the planner
 // block velocity profile is traced exactly. The size of this buffer governs how much step
-// execution lead time there is for other Grbl processes have to compute and do their thing
+// execution lead time there is for other Arbl processes have to compute and do their thing
 // before having to come back and refill this buffer, currently at ~50msec of step moves.
 // #define SEGMENT_BUFFER_SIZE 10 // Uncomment to override default in stepper.h.
 
@@ -437,11 +437,11 @@
 // #define LINE_BUFFER_SIZE 256  // Uncomment to override default in protocol.h
   
 // Serial send and receive buffer size. The receive buffer is often used as another streaming
-// buffer to store incoming blocks to be processed by Grbl when its ready. Most streaming
+// buffer to store incoming blocks to be processed by Arbl when its ready. Most streaming
 // interfaces will character count and track each block send to each block response. So,
 // increase the receive buffer if a deeper receive buffer is needed for streaming and avaiable
-// memory allows. The send buffer primarily handles messages in Grbl. Only increase if large
-// messages are sent and Grbl begins to stall, waiting to send the rest of the message.
+// memory allows. The send buffer primarily handles messages in Arbl. Only increase if large
+// messages are sent and Arbl begins to stall, waiting to send the rest of the message.
 // NOTE: Buffer size values must be greater than zero and less than 256.
 // #define RX_BUFFER_SIZE 255 // Uncomment to override defaults in serial.h
 // #define TX_BUFFER_SIZE 255
@@ -471,12 +471,12 @@
 // work well and are cheap to find) and wire in a low-pass circuit into each limit pin.
 // #define ENABLE_SOFTWARE_DEBOUNCE // Default disabled. Uncomment to enable.
 
-// Configures the position after a probing cycle during Grbl's check mode. Disabled sets
+// Configures the position after a probing cycle during Arbl's check mode. Disabled sets
 // the position to the probe target, when enabled sets the position to the start position.
 // #define SET_CHECK_MODE_PROBE_TO_START // Default disabled. Uncomment to enable.
 
-// Force Grbl to check the state of the hard limit switches when the processor detects a pin
-// change inside the hard limit ISR routine. By default, Grbl will trigger the hard limits
+// Force Arbl to check the state of the hard limit switches when the processor detects a pin
+// change inside the hard limit ISR routine. By default, Arbl will trigger the hard limits
 // alarm upon any pin change, since bouncing switches can cause a state check like this to
 // misread the pin. When hard limits are triggered, they should be 100% reliable, which is the
 // reason that this option is disabled by default. Only if your system/electronics can guarantee
@@ -485,7 +485,7 @@
 // NOTE: This option has no effect if SOFTWARE_DEBOUNCE is enabled.
 // #define HARD_LIMIT_FORCE_STATE_CHECK // Default disabled. Uncomment to enable.
 
-// Adjusts homing cycle search and locate scalars. These are the multipliers used by Grbl's
+// Adjusts homing cycle search and locate scalars. These are the multipliers used by Arbl's
 // homing cycle to ensure the limit switches are engaged and cleared through each phase of
 // the cycle. The search phase uses the axes max-travel setting times the SEARCH_SCALAR to
 // determine distance to look for the limit switch. Once found, the locate phase begins and
@@ -503,7 +503,7 @@
 #define ENABLE_RESTORE_EEPROM_CLEAR_PARAMETERS // '$RST=#' Default enabled. Comment to disable.
 
 // Defines the EEPROM data restored upon a settings version change and `$RST=*` command. Whenever the
-// the settings or other EEPROM data structure changes between Grbl versions, Grbl will automatically
+// the settings or other EEPROM data structure changes between Arbl versions, Arbl will automatically
 // wipe and restore the EEPROM. This macro controls what data is wiped and restored. This is useful
 // particularily for OEMs that need to retain certain data. For example, the BUILD_INFO string can be
 // written into the Arduino EEPROM via a seperate .INO sketch to contain product data. Altering this
@@ -514,7 +514,7 @@
 // Enable the '$I=(string)' build info write command. If disabled, any existing build info data must
 // be placed into EEPROM via external means with a valid checksum value. This macro option is useful
 // to prevent this data from being over-written by a user, when used to store OEM product data.
-// NOTE: If disabled and to ensure Grbl can never alter the build info line, you'll also need to enable
+// NOTE: If disabled and to ensure Arbl can never alter the build info line, you'll also need to enable
 // the SETTING_RESTORE_ALL macro above and remove SETTINGS_RESTORE_BUILD_INFO from the mask.
 // NOTE: See the included grblWrite_BuildInfo.ino example file to write this string seperately.
 #define ENABLE_BUILD_INFO_WRITE_COMMAND // '$I=' Default enabled. Comment to disable.
@@ -533,7 +533,7 @@
 // job. At this time, this option only forces a planner buffer sync with these g-code commands.
 #define FORCE_BUFFER_SYNC_DURING_EEPROM_WRITE // Default enabled. Comment to disable.
 
-// In Grbl v0.9 and prior, there is an old outstanding bug where the `WPos:` work position reported
+// In Arbl v0.9 and prior, there is an old outstanding bug where the `WPos:` work position reported
 // may not correlate to what is executing, because `WPos:` is based on the g-code parser state, which
 // can be several motions behind. This option forces the planner buffer to empty, sync, and stop
 // motion whenever there is a command that alters the work coordinate offsets `G10,G43.1,G92,G54-59`.
@@ -541,7 +541,7 @@
 // that any of these commands are used need continuous motions through them.
 #define FORCE_BUFFER_SYNC_DURING_WCO_CHANGE // Default enabled. Comment to disable.
 
-// By default, Grbl disables feed rate overrides for all G38.x probe cycle commands. Although this
+// By default, Arbl disables feed rate overrides for all G38.x probe cycle commands. Although this
 // may be different than some pro-class machine control, it's arguable that it should be this way. 
 // Most probe sensors produce different levels of error that is dependent on rate of speed. By 
 // keeping probing cycles to their programmed feed rates, the probe sensor should be a lot more
@@ -549,10 +549,10 @@
 // #define ALLOW_FEED_OVERRIDE_DURING_PROBE_CYCLES // Default disabled. Uncomment to enable.
 
 // Enables and configures parking motion methods upon a safety door state. Primarily for OEMs
-// that desire this feature for their integrated machines. At the moment, Grbl assumes that
+// that desire this feature for their integrated machines. At the moment, Arbl assumes that
 // the parking motion only involves one axis, although the parking implementation was written
 // to be easily refactored for any number of motions on different axes by altering the parking
-// source code. At this time, Grbl only supports parking one axis (typically the Z-axis) that
+// source code. At this time, Arbl only supports parking one axis (typically the Z-axis) that
 // moves in the positive direction upon retracting and negative direction upon restoring position.
 // The motion executes with a slow pull-out retraction motion, power-down, and a fast park.
 // Restoring to the resume position follows these set motions in reverse: fast restore to
@@ -581,14 +581,14 @@
 // #define DEACTIVATE_PARKING_UPON_INIT // Default disabled. Uncomment to enable.
 
 // This option will automatically disab
-// Enables and configures Grbl's sleep mode feature. If the spindle or coolant are powered and Grbl 
+// Enables and configures Arbl's sleep mode feature. If the spindle or coolant are powered and Arbl
 // is not actively moving or receiving any commands, a sleep timer will start. If any data or commands
 // are received, the sleep timer will reset and restart until the above condition are not satisfied.
-// If the sleep timer elaspes, Grbl will immediately execute the sleep mode by shutting down the spindle
-// and coolant and entering a safe sleep state. If parking is enabled, Grbl will park the machine as
+// If the sleep timer elaspes, Arbl will immediately execute the sleep mode by shutting down the spindle
+// and coolant and entering a safe sleep state. If parking is enabled, Arbl will park the machine as
 // well. While in sleep mode, only a hard/soft reset will exit it and the job will be unrecoverable.
 // NOTE: Sleep mode is a safety feature, primarily to address communication disconnect problems. To 
-// keep Grbl from sleeping, employ a stream of '?' status report commands as a connection "heartbeat".
+// keep Arbl from sleeping, employ a stream of '?' status report commands as a connection "heartbeat".
 // #define SLEEP_ENABLE  // Default disabled. Uncomment to enable.
 #define SLEEP_DURATION 5.0 // Float (0.25 - 61.0) seconds before sleep mode is executed.
 

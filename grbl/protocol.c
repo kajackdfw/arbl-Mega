@@ -1,22 +1,22 @@
 /*
-  protocol.c - controls Grbl execution protocol and procedures
-  Part of Grbl
+  protocol.c - controls Arbl execution protocol and procedures
+  Part of Arbl
 
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h"
@@ -65,7 +65,7 @@ void protocol_main_loop()
 
   // ---------------------------------------------------------------------------------
   // Primary loop! Upon a system abort, this exits back to main() to reset the system.
-  // This is also where Grbl idles while waiting for something to do.
+  // This is also where Arbl idles while waiting for something to do.
   // ---------------------------------------------------------------------------------
 
   uint8_t line_flags = 0;
@@ -94,7 +94,7 @@ void protocol_main_loop()
           // Empty or comment line. For syncing purposes.
           report_status_message(STATUS_OK);
         } else if (line[0] == '$') {
-          // Grbl '$' system command
+          // Arbl '$' system command
           report_status_message(system_execute_line(line));
         } else if (sys.state & (STATE_ALARM | STATE_JOG)) {
           // Everything else is gcode. Block if in alarm or jog mode.
@@ -134,7 +134,7 @@ void protocol_main_loop()
           // TODO: Install '%' feature
           // } else if (c == '%') {
             // Program start-end percent sign NOT SUPPORTED.
-            // NOTE: This maybe installed to tell Grbl when a program is running vs manual input,
+            // NOTE: This maybe installed to tell Arbl when a program is running vs manual input,
             // where, during a program, the system auto-cycle start will continue to execute
             // everything until the next '%' sign. This will help fix resuming issues with certain
             // functions that empty the planner buffer to execute its task on-time.
@@ -196,7 +196,7 @@ void protocol_auto_cycle_start()
 }
 
 
-// This function is the general interface to Grbl's real-time command execution system. It is called
+// This function is the general interface to Arbl's real-time command execution system. It is called
 // from various check points in the main program, primarily where there may be a while loop waiting
 // for a buffer to clear space or any point where the execution time from the last check point may
 // be more than a fraction of a second. This is a way to execute realtime commands asynchronously
@@ -214,8 +214,8 @@ void protocol_execute_realtime()
 }
 
 
-// Executes run-time commands, when required. This function primarily operates as Grbl's state
-// machine and controls the various real-time features Grbl has to offer.
+// Executes run-time commands, when required. This function primarily operates as Arbl's state
+// machine and controls the various real-time features Arbl has to offer.
 // NOTE: Do not alter this unless you know exactly what you are doing!
 void protocol_exec_rt_system()
 {
@@ -223,7 +223,7 @@ void protocol_exec_rt_system()
   rt_exec = sys_rt_exec_alarm; // Copy volatile sys_rt_exec_alarm.
   if (rt_exec) { // Enter only if any bit flag is true
     // System alarm. Everything has shutdown by something that has gone severely wrong. Report
-    // the source of the error to the user. If critical, Grbl disables by entering an infinite
+    // the source of the error to the user. If critical, Arbl disables by entering an infinite
     // loop until system reset/abort.
     sys.state = STATE_ALARM; // Set system alarm state
     report_alarm_message(rt_exec);
@@ -274,7 +274,7 @@ void protocol_exec_rt_system()
             }
           }
         }
-        // If IDLE, Grbl is not in motion. Simply indicate suspend state and hold is complete.
+        // If IDLE, Arbl is not in motion. Simply indicate suspend state and hold is complete.
         if (sys.state == STATE_IDLE) { sys.suspend = SUSPEND_HOLD_COMPLETE; }
 
         // Execute and flag a motion cancel with deceleration and return to idle. Used primarily by probing cycle
@@ -501,9 +501,9 @@ void protocol_exec_rt_system()
 }
 
 
-// Handles Grbl system suspend procedures, such as feed hold, safety door, and parking motion.
+// Handles Arbl system suspend procedures, such as feed hold, safety door, and parking motion.
 // The system will enter this loop, create local variables for suspend tasks, and return to
-// whatever function that invoked the suspend, such that Grbl resumes normal operation.
+// whatever function that invoked the suspend, such that Arbl resumes normal operation.
 // This function is written in a way to promote custom parking motions. Simply use this as a
 // template
 static void protocol_exec_rt_suspend()

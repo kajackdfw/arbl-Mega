@@ -124,7 +124,7 @@ void eeprom_put_char( unsigned int addr, unsigned char new_value )
 	sei(); // Restore interrupt flag state.
 }
 
-// Extensions added as part of Grbl 
+// Extensions added as part of Arbl
 
 
 void memcpy_to_eeprom_with_checksum(unsigned int destination, char *source, unsigned int size) {

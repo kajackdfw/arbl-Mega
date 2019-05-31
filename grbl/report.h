@@ -1,26 +1,26 @@
 /*
   report.h - reporting and messaging methods
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2012-2016 Sungeun K. Jeon for Gnea Research LLC
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 #ifndef report_h
 #define report_h
 
-// Define Grbl status codes. Valid values (0-255)
+// Define Arbl status codes. Valid values (0-255)
 #define STATUS_OK 0
 #define STATUS_EXPECTED_COMMAND_LETTER 1
 #define STATUS_BAD_NUMBER_FORMAT 2
@@ -60,7 +60,7 @@
 #define STATUS_GCODE_G43_DYNAMIC_AXIS_ERROR 37
 #define STATUS_GCODE_MAX_VALUE_EXCEEDED 38
 
-// Define Grbl alarm codes. Valid values (1-255). 0 is reserved.
+// Define Arbl alarm codes. Valid values (1-255). 0 is reserved.
 #define ALARM_HARD_LIMIT_ERROR      EXEC_ALARM_HARD_LIMIT
 #define ALARM_SOFT_LIMIT_ERROR      EXEC_ALARM_SOFT_LIMIT
 #define ALARM_ABORT_CYCLE           EXEC_ALARM_ABORT_CYCLE
@@ -71,7 +71,7 @@
 #define ALARM_HOMING_FAIL_PULLOFF   EXEC_ALARM_HOMING_FAIL_PULLOFF
 #define ALARM_HOMING_FAIL_APPROACH  EXEC_ALARM_HOMING_FAIL_APPROACH
 
-// Define Grbl feedback message codes. Valid values (0-255).
+// Define Arbl feedback message codes. Valid values (0-255).
 #define MESSAGE_CRITICAL_EVENT 1
 #define MESSAGE_ALARM_LOCK 2
 #define MESSAGE_ALARM_UNLOCK 3
@@ -96,10 +96,10 @@ void report_feedback_message(uint8_t message_code);
 // Prints welcome message
 void report_init_message();
 
-// Prints Grbl help and current global settings
+// Prints Arbl help and current global settings
 void report_grbl_help();
 
-// Prints Grbl global settings
+// Prints Arbl global settings
 void report_grbl_settings();
 
 // Prints an echo of the pre-parsed line received right before execution.
@@ -111,7 +111,7 @@ void report_realtime_status();
 // Prints recorded probe position
 void report_probe_parameters();
 
-// Prints Grbl NGC parameters (coordinate offsets, probe)
+// Prints Arbl NGC parameters (coordinate offsets, probe)
 void report_ngc_parameters();
 
 // Prints current g-code parser mode state

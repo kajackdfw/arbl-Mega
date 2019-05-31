@@ -5,18 +5,18 @@
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef settings_h
@@ -28,7 +28,7 @@
   #define EEPROM_LINE_SIZE 80
 #endif
 
-// Version of the EEPROM data. Will be used to migrate existing data from older versions of Grbl
+// Version of the EEPROM data. Will be used to migrate existing data from older versions of Arbl
 // when firmware is upgraded. Always stored in byte 0 of eeprom
 #define SETTINGS_VERSION 10  // NOTE: Check settings_reset() when moving to next version.
 
@@ -64,7 +64,7 @@
   #define SETTINGS_RESTORE_ALL 0xFF // All bitflags
 #endif
 
-// Define EEPROM memory address location values for Grbl settings and parameters
+// Define EEPROM memory address location values for Arbl settings and parameters
 #define EEPROM_ADDR_GLOBAL         1U
 #define EEPROM_ADDR_PARAMETERS     512U
 #define EEPROM_ADDR_STARTUP_BLOCK  768U
@@ -78,7 +78,7 @@
 #define SETTING_INDEX_G30    N_COORDINATE_SYSTEM+1  // Home position 2
 // #define SETTING_INDEX_G92    N_COORDINATE_SYSTEM+2  // Coordinate offset (G92.2,G92.3 not supported)
 
-// Define Grbl axis settings numbering scheme. Starts at START_VAL, every INCREMENT, over N_SETTINGS.
+// Define Arbl axis settings numbering scheme. Starts at START_VAL, every INCREMENT, over N_SETTINGS.
 #define AXIS_N_SETTINGS          4
 #define AXIS_SETTINGS_START_VAL  100 // NOTE: Reserving settings values >= 100 for axis settings. Up to 255.
 #define AXIS_SETTINGS_INCREMENT  10  // Must be greater than the number of axis settings
@@ -91,7 +91,7 @@ typedef struct {
   float acceleration[N_AXIS];
   float max_travel[N_AXIS];
 
-  // Remaining Grbl settings
+  // Remaining Arbl settings
   uint8_t pulse_microseconds;
   uint8_t step_invert_mask;
   uint8_t dir_invert_mask;
@@ -138,13 +138,13 @@ void settings_write_coord_data(uint8_t coord_select, float *coord_data);
 // Reads selected coordinate data from EEPROM
 uint8_t settings_read_coord_data(uint8_t coord_select, float *coord_data);
 
-// Returns the step pin mask according to Grbl's internal axis numbering
+// Returns the step pin mask according to Arbl's internal axis numbering
 uint8_t get_step_pin_mask(uint8_t i);
 
-// Returns the direction pin mask according to Grbl's internal axis numbering
+// Returns the direction pin mask according to Arbl's internal axis numbering
 uint8_t get_direction_pin_mask(uint8_t i);
 
-// Returns the limit pin mask according to Grbl's internal axis numbering
+// Returns the limit pin mask according to Arbl's internal axis numbering
 uint8_t get_limit_pin_mask(uint8_t i);
 
 

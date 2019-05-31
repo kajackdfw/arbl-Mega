@@ -1,22 +1,22 @@
 /*
   motion_control.c - high level interface for issuing motion commands
-  Part of Grbl
+  Part of Arbl
 
   Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
-  Grbl is free software: you can redistribute it and/or modify
+  Arbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Grbl is distributed in the hope that it will be useful,
+  Arbl is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
+  along with Arbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "grbl.h"
@@ -32,7 +32,7 @@
 void mc_line(float *target, plan_line_data_t *pl_data)
 {
   // If enabled, check for soft limit violations. Placed here all line motions are picked up
-  // from everywhere in Grbl.
+  // from everywhere in Arbl.
   if (bit_istrue(settings.flags,BITFLAG_SOFT_LIMIT_ENABLE)) {
     // NOTE: Block jog state. Jogging is a special case and soft limits are handled independently.
     if (sys.state != STATE_JOG) { limits_soft_check(target); }
@@ -46,12 +46,12 @@ void mc_line(float *target, plan_line_data_t *pl_data)
   // plan_check_full_buffer() and check for system abort loop. Also for position reporting
   // backlash steps will need to be also tracked, which will need to be kept at a system level.
   // There are likely some other things that will need to be tracked as well. However, we feel
-  // that backlash compensation should NOT be handled by Grbl itself, because there are a myriad
+  // that backlash compensation should NOT be handled by Arbl itself, because there are a myriad
   // of ways to implement it and can be effective or ineffective for different CNC machines. This
   // would be better handled by the interface as a post-processor task, where the original g-code
   // is translated and inserts backlash motions that best suits the machine.
   // NOTE: Perhaps as a middle-ground, all that needs to be sent is a flag or special command that
-  // indicates to Grbl what is a backlash compensation motion, so that Grbl executes the move but
+  // indicates to Arbl what is a backlash compensation motion, so that Arbl executes the move but
   // doesn't update the machine position values. Since the position values used by the g-code
   // parser and planner are separate from the system machine positions, this is doable.
 
@@ -105,7 +105,7 @@ void mc_arc(float *target, plan_line_data_t *pl_data, float *position, float *of
   // NOTE: Segment end points are on the arc, which can lead to the arc diameter being smaller by up to
   // (2x) settings.arc_tolerance. For 99% of users, this is just fine. If a different arc segment fit
   // is desired, i.e. least-squares, midpoint on arc, just change the mm_per_arc_segment calculation.
-  // For the intended uses of Grbl, this value shouldn't exceed 2000 for the strictest of cases.
+  // For the intended uses of Arbl, this value shouldn't exceed 2000 for the strictest of cases.
   uint16_t segments = floor(fabs(0.5*angular_travel*radius)/
                           sqrt(settings.arc_tolerance*(2*radius - settings.arc_tolerance)) );
 
@@ -201,7 +201,7 @@ void mc_dwell(float seconds)
 
 
 // Perform homing cycle to locate and set machine zero. Only '$H' executes this command.
-// NOTE: There should be no motions in the buffer and Grbl must be in an idle state before
+// NOTE: There should be no motions in the buffer and Arbl must be in an idle state before
 // executing the homing cycle. This prevents incorrect buffered plans after homing.
 void mc_homing_cycle(uint8_t cycle_mask)
 {
@@ -359,7 +359,7 @@ uint8_t mc_probe_cycle(float *target, plan_line_data_t *pl_data, uint8_t parser_
 
 
 // Method to ready the system to reset by setting the realtime reset command and killing any
-// active processes in the system. This also checks if a system reset is issued while Grbl
+// active processes in the system. This also checks if a system reset is issued while Arbl
 // is in a motion state. If so, kills the steppers and sets the system alarm to flag position
 // lost, since there was an abrupt uncontrolled deceleration. Called at an interrupt level by
 // realtime abort command and hard limits. So, keep to a minimum.
