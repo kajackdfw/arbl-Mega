@@ -28,14 +28,13 @@
 #define SOME_LARGE_VALUE 1.0E+38
 
 // Axis array index values. Must start with 0 and be continuous.
-#define N_AXIS 7 // Number of axes excluding the spindle
+#define N_AXIS 6 // Number of axes excluding the spindle
 #define X_AXIS 0 // Axis indexing value.
 #define Y_AXIS 1
 #define Z_AXIS 2
-#define H_AXIS 3 // this axis while match or mirror X axis to level the hand or head
-#define A_AXIS 4
-#define B_AXIS 5
-#define C_AXIS 6
+#define A_AXIS 3
+#define B_AXIS 4
+#define C_AXIS 5
 
 // CoreXY motor assignments. DO NOT ALTER.
 // NOTE: If the A and B motor axis bindings are changed, this effects the CoreXY equations.

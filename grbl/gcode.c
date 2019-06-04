@@ -293,7 +293,7 @@ uint8_t gc_execute_line(char *line)
           case 'C': word_bit = WORD_C; gc_block.values.xyz[C_AXIS] = value; axis_words |= (1<<C_AXIS); break; // .xyz FIXME
           case 'D': word_bit = WORD_D; gc_block.values.xyz[D_AXIS] = value; axis_words |= (1<<D_AXIS); break; // .xyz FIXME
           case 'F': word_bit = WORD_F; gc_block.values.f = value; break;
-          case 'H': word_bit = WORD_H; gc_block.values.xyz[H_AXIS] = value; axis_words |= (1<<H_AXIS); break; // .xyz FIXME
+          //case 'H': hard wired to X axis
           case 'I': word_bit = WORD_I; gc_block.values.ijk[X_AXIS] = value; ijk_words |= (1<<X_AXIS); break;
           case 'J': word_bit = WORD_J; gc_block.values.ijk[Y_AXIS] = value; ijk_words |= (1<<Y_AXIS); break;
           case 'K': word_bit = WORD_K; gc_block.values.ijk[Z_AXIS] = value; ijk_words |= (1<<Z_AXIS); break;
