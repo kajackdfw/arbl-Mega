@@ -1,4 +1,4 @@
-* STATUS: Coding has not begun! Just forked recently.
+* STATUS: Coding has not begun! Just forked recently. Not ready for usage.
 
 Arbl is a no-compromise, high performance, grbl based motion control for 8 axis Robot Arm Control. This version of Arbl runs on an Arduino Mega2560 only.
 
@@ -10,3 +10,8 @@ Arbl includes full acceleration management with look ahead. That means the contr
 
 * [Licensing](https://github.com/gnea/grbl/wiki/Licensing): Arbl is free software, released under the GPLv3 license.
 
+**TODOS**
+
+* Map axis A,B, and C to pins in cpu_map.h
+* Review and/or fix Limit Mask, Direction Mask, and Step Mask code
+* Test code on 3 axis GRBL board to see if XY and Z still work.

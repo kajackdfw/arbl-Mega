@@ -69,13 +69,17 @@
   #define LIMIT_DDR       DDRB
   #define LIMIT_PORT      PORTB
   #define LIMIT_PIN       PINB
+  #define A_LIMIT_BIT     1 // MEGA2560 Digital FIXME wich pin ?
+  #define B_LIMIT_BIT     2 // MEGA2560 Digital FIXME wich pin ?
+  #define C_LIMIT_BIT     3 // MEGA2560 Digital FIXME wich pin ?
   #define X_LIMIT_BIT     4 // MEGA2560 Digital Pin 10
   #define Y_LIMIT_BIT     5 // MEGA2560 Digital Pin 11
   #define Z_LIMIT_BIT     6 // MEGA2560 Digital Pin 12
+
   #define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
   #define LIMIT_INT_vect  PCINT0_vect 
   #define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
-  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
+  #define LIMIT_MASK ((1<<A_LIMIT_BIT)|(1<<B_LIMIT_BIT)|(1<<C_LIMIT_BIT)|(1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
 
   // Define spindle enable and spindle direction output pins.
   #define SPINDLE_ENABLE_DDR      DDRH
