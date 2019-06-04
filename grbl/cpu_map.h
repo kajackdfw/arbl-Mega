@@ -39,9 +39,9 @@
   #define X_STEP_BIT    2 // MEGA2560 Digital Pin 24
   #define Y_STEP_BIT    3 // MEGA2560 Digital Pin 25
   #define Z_STEP_BIT    4 // MEGA2560 Digital Pin 26
-  #define A_STEP_BIT    5 // MEGA2560 Digital Pin FIXME wich pin ?
-  #define B_STEP_BIT    6 // MEGA2560 Digital Pin FIXME wich pin ?
-  #define C_STEP_BIT    7 // MEGA2560 Digital Pin FIXME wich pin ?
+  #define A_STEP_BIT    5 // MEGA2560 Digital Pin FIXME how to connect this to pin 27 ?
+  #define B_STEP_BIT    6 // MEGA2560 Digital Pin FIXME how to connect this to pin 28 ?
+  #define C_STEP_BIT    7 // MEGA2560 Digital Pin FIXME how to connect this to pin 29 ?
   // #define H_STEP_BIT    8 // MEGA2560 Digital Pin , we ran out of bits, so hard wire H axis to X axis
   #define STEP_MASK ((1<<X_STEP_BIT)|(1<<Y_STEP_BIT)|(1<<Z_STEP_BIT)|(1<<A_STEP_BIT)|(1<<B_STEP_BIT)|(1<<C_STEP_BIT)) // All step bits
 
@@ -52,9 +52,9 @@
   #define X_DIRECTION_BIT   7 // MEGA2560 Digital Pin 30
   #define Y_DIRECTION_BIT   6 // MEGA2560 Digital Pin 31
   #define Z_DIRECTION_BIT   5 // MEGA2560 Digital Pin 32
-  #define A_DIRECTION_BIT   4 // MEGA2560 Digital Pin FIXME wich pin ?
-  #define B_DIRECTION_BIT   3 // MEGA2560 Digital Pin FIXME wich pin ?
-  #define C_DIRECTION_BIT   2 // MEGA2560 Digital Pin FIXME wich pin ?
+  #define A_DIRECTION_BIT   4 // MEGA2560 Digital Pin FIXME how to connect this to pin 33 ?
+  #define B_DIRECTION_BIT   3 // MEGA2560 Digital Pin FIXME how to connect this to pin 34 ?
+  #define C_DIRECTION_BIT   2 // MEGA2560 Digital Pin FIXME how to connect this to pin 35 ?
   //#define H_DIRECTION_BIT   6 // MEGA2560 Digital Pin , we ran out of bits, so hard wire H axis to X axis
   #define DIRECTION_MASK ((1<<X_DIRECTION_BIT)|(1<<Y_DIRECTION_BIT)|(1<<Z_DIRECTION_BIT)|(1<<A_DIRECTION_BIT)|(1<<B_DIRECTION_BIT)|(1<<C_DIRECTION_BIT)) // All direction bits FIXME
 
