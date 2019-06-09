@@ -10,8 +10,18 @@ Arbl includes full acceleration management with look ahead. That means the contr
 
 * [Licensing](https://github.com/gnea/grbl/wiki/Licensing): Arbl is free software, released under the GPLv3 license.
 
-**TODOS**
+**COMPLETED**
+
+* Change name from Grbl to Arbl
+
+**NEEDS TESTING**
 
 * Map axis A,B, and C to pins in cpu_map.h
-* Review and/or fix Limit Mask, Direction Mask, and Step Mask code
-* Test code on 3 axis GRBL board to see if XY and Z still work.
+* Limit Mask, Direction Mask, and Step Mask code
+* Test code on 3 axis GRBL board to see if XY and Z still works.
+
+**TODOS**
+
+* Add / Init gc_block.values.abc similar to gc_block.values.xyz
+* Comment out circular Gcodes, no perpendicular axis XY for those.
+* Review Jogging codes for need
